@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathBlast</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Elemen audio untuk musik latar -->
+    <audio src="audio/backsound-lagu.mp3" autoplay loop></audio>
+
+    <!-- Animasi masuk untuk nama website -->
+    <div id="intro-animation" class="intro-animation">
+        <h1 id="animated-title"></h1>
+    </div>
+
+    <div id="welcome-screen" class="container hidden">
+        <h1 id="welcome-title">Welcome to Game Lobby</h1>
+        <p class="name-prompt">Please enter your name:</p>
+        <input type="text" id="name-input" placeholder="Your name" autocomplete="off">
+        <button onclick="enterGame()">Submit</button>
+    </div>
+    
+    <div id="game-screen" class="container hidden">
+        <h1 id="greeting" class="greeting-text">Hello, ...</h1>
+        <p id="score-display">Score: 0</p>
+        <p>Select Your Level:</p>
+        <div class="level-container">
+            <button class="level easy" onclick="startLevel('easy')">Easy</button>
+            <button class="level medium" onclick="startLevel('medium')">Medium</button>
+            <button class="level hard" onclick="startLevel('hard')">Hard</button>
+        </div>
+        <button id="back-button" class="back-button" onclick="goBack()">Back</button>
+        <button class="show-scoreboard-btn" onclick="showScoreboard()">Show Scoreboard</button>
+    </div>
+
+    <div id="quiz-container" class="container hidden">
+        <h1 id="quiz-title" class="level-title">Level Title</h1>
+        <p id="question-text"></p>
+        <img id="question-image" src="" alt="Question Image" style="display: none;">
+        <p id="image-caption" style="display: none;"></p>
+        <div id="options-container" class="options"></div>
+        <p id="timer-text">Time left: 60s</p>
+        <p id="feedback-text"></p>
+    </div>
+    
+    <div id="game-history" style="display: none;"></div>
+    
+    <div id="scoreboard" class="container hidden">
+        <h2>Scoreboard</h2>
+        <div class="scoreboard-table-wrapper">
+            <table id="score-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Baris akan ditambahkan di sini secara dinamis -->
+                </tbody>
+            </table>
+        </div>
+        <button onclick="hideScoreboard()">Back</button>
+    </div>
+    
+    <div id="summary-container" class="container hidden">
+        <h2>Summary</h2>
+        <p id="summary-correct"></p>
+        <p id="summary-wrong"></p>
+        <p id="summary-points"></p>
+        <p id="summary-time"></p>
+        <p id="summary-thankyou">Thank you for completing the quiz!</p>
+        <button onclick="goToGameScreen()">Back to Levels</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

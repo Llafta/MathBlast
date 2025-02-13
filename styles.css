@@ -1,0 +1,503 @@
+@font-face {
+    font-family: 'SuperMario256';
+    src: url('super_mario_256/SuperMario256.ttf') format('truetype');
+}
+* {
+    font-family: 'SuperMario256', cursive;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('https://steamuserimages-a.akamaihd.net/ugc/912408235211382321/62F3FBC8F234B09233ED1B3D0406A93137156A9B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    padding: 10px;
+}
+.container {
+    position: relative;
+    background: url('https://media.istockphoto.com/id/1138977416/id/vektor/papan-tulis-hijau.jpg?s=170667a&w=0&k=20&c=i7DGjMVVRbR_cjZBlrwfQPHcg6mP-drDd0bf2VHmBZ8=') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px #000000;
+    width: 100%;
+    max-width: 900px;
+    backdrop-filter: blur(10px);
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hidden {
+    display: none;
+}
+input {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 18px;
+    outline: none;
+    width: 80%;
+    max-width: 300px;
+}
+button {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 100%;
+    max-width: 200px;
+    font-size: 20px;
+}
+.level-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    gap: 30px;
+}
+.level {
+    font-size: 24px;
+    width: 100%;
+    height: 70px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 3px solid black;
+}
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+@media (min-width: 600px) {
+    .level-container {
+        flex-direction: row;
+    }
+    .options {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+.easy {
+    background-color: #4caf4f73;
+    color: white;
+}
+.easy:hover {
+    transform: scale(1.1);
+    background-color: #45a049;
+}
+.medium {
+    background-color: #ffc10770;
+    color: white;
+}
+.medium:hover {
+    transform: scale(1.1);
+    background-color: #ff9800;
+}
+.hard {
+    background-color: #f4433670;
+    color: white;
+}
+.hard:hover {
+    transform: scale(1.1);
+    background-color: #d32f2f;
+}
+.back-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #555555;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    max-width: 100px;
+}
+.back-button:hover {
+    transform: scale(1.05);
+    background-color: white;
+    color: black;
+}
+#timer-text {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+@keyframes pop-up {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+#feedback-text {
+    display: none;
+    animation: pop-up 0.5s ease;
+    color: #4CAF50;
+    font-weight: bold;
+}
+.intro-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeInOut 5s ease-in-out forwards;
+}
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+.intro-animation h1 {
+    font-size: 4em;
+    color: white;
+    position: relative;
+    animation: glitch 1s linear infinite;
+}
+@keyframes glitch {
+    0%, 100% {
+        clip-path: inset(0);
+        transform: skew(0deg);
+    }
+    10% {
+        clip-path: inset(-20% 0 10% 0);
+        transform: skew(5deg);
+    }
+    20% {
+        clip-path: inset(10% 0 -20% 0);
+        transform: skew(-5deg);
+    }
+    30%, 40%, 50%, 60%, 70%, 80% {
+        clip-path: inset(0 0 5% 0);
+        transform: skew(0deg);
+    }
+    90% {
+        clip-path: inset(0 -20% 0 10%);
+        transform: skew(5deg);
+    }
+}
+.intro-animation::before,
+.intro-animation::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+.intro-animation::before {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    animation: glitch 1s linear infinite;
+}
+.intro-animation::after {
+    left: -2px;
+    text-shadow: 1px 0 blue;
+    animation: glitch 1s linear infinite;
+}
+.intro-animation h1 span {
+    opacity: 0;
+    display: inline-block;
+    animation: fadeIn 0.5s forwards;
+    animation-delay: 0s; /* Ini akan di-override oleh inline style */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+#welcome-title {
+    color: #00FFFF; /* Ganti dengan warna yang Anda inginkan */
+}
+
+.name-prompt {
+    color: white; /* Ganti dengan warna yang Anda inginkan, contoh ini menggunakan warna oranye */
+}
+
+.greeting-text {
+    color: #00FFFF; /* Ganti dengan warna biru neon */
+}
+
+.show-scoreboard-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    padding: 6px 12px;
+    background-color: #4caf4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    max-width: 120px;
+}
+
+.show-scoreboard-btn:hover {
+    transform: scale(1.0);
+    background-color: white;
+    color: #4caf4f;
+}
+
+#scoreboard table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+#scoreboard th, #scoreboard td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+#scoreboard th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+#scoreboard tr:hover {
+    background-color: #f1f1f1;
+}
+
+#scoreboard h2 {
+    color: #00FFFF; /* Warna oranye yang mencolok */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#scoreboard button {
+    padding: 10px 20px;
+    background-color: #3333336c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+#scoreboard button:hover {
+    transform: scale(1.1);
+    background-color:#333;
+}
+
+.scoreboard-table-wrapper {
+    max-height: 300px; /* Atur tinggi maksimum sesuai kebutuhan */
+    overflow-y: auto; /* Aktifkan scroll vertikal */
+    margin-bottom: 20px; /* Beri jarak antara tabel dan tombol */
+}
+
+.easy-level {
+    color: #4CAF50; /* Warna hijau untuk level mudah */
+    font-weight: bold;
+}
+
+.medium-level {
+    color: #FFC107; /* Warna kuning untuk level menengah */
+    font-weight: bold;
+}
+
+.hard-level {
+    color: #F44336; /* Warna merah untuk level sulit */
+    font-weight: bold;
+}
+
+.options button {
+    padding: 15px 25px; /* Perbesar ukuran padding untuk memperbesar kotak */
+    font-size: 18px; /* Sesuaikan ukuran font jika diperlukan */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s; /* Kurangi durasi efek scale */
+    background-color: #f0f0f0; /* Warna latar belakang default */
+    color: #333; /* Warna teks */
+    text-align: left; /* Rata kiri teks */
+    width: 100%; /* Pastikan tombol mengambil lebar penuh dari container */
+    max-width: 400px; /* Atur lebar maksimum untuk tombol */
+    box-sizing: border-box; /* Sertakan padding dan border dalam lebar total */
+    margin-bottom: 10px; /* Tambahkan margin bawah untuk jarak antar tombol */
+    font-family: 'Times New Roman', Times, serif; /* Mengatur font menjadi Times New Roman */
+}
+
+.options button:hover {
+    transform: scale(1.05); /* Kurangi efek scale saat di-hover */
+    background-color: #e0e0e0; /* Warna latar belakang saat di-hover */
+}
+
+#question-text {
+    color: #fdfbfb; /* Ubah warna teks menjadi lebih gelap untuk kontras */
+    font-size: 20px; /* Sesuaikan ukuran font jika diperlukan */
+    margin-bottom: 20px; /* Tambahkan margin bawah untuk spasi */
+    font-family: 'Times New Roman', Times, serif; /* Gunakan font Times New Roman */
+    font-weight: bold; /* Membuat teks menjadi tebal */
+}
+
+.correct {
+    color: #4CAF50; /* Warna hijau untuk jawaban benar */
+    font-weight: bold;
+}
+
+.wrong {
+    color: #F44336; /* Warna merah untuk jawaban salah */
+    font-weight: bold;
+}
+
+@keyframes lightningRise {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lightning-rise {
+    animation: lightningRise 0.5s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+    .level-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .options button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-animation h1 {
+        font-size: 2.5em;
+    }
+
+    #welcome-title, .greeting-text {
+        font-size: 1.5em;
+    }
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 10px; /* Jarak antar tombol */
+    width: 100%; /* Pastikan container mengambil lebar penuh */
+    max-width: 600px; /* Atur lebar maksimum untuk container */
+    margin: 0 auto; /* Pusatkan container secara horizontal */
+}
+
+#question-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px; /* Tambahkan margin bawah untuk jarak antara gambar dan jawaban */
+}
+
+#score-display {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    font-size: 18px; /* Sesuaikan ukuran font jika diperlukan */
+    color: goldenrod; /* Sesuaikan warna teks jika diperlukan */
+    font-weight: bold;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#summary-container {
+    animation: fadeInUp 0.5s ease-out forwards; /* Terapkan animasi saat elemen ditampilkan */
+}
+
+#summary-container p {
+    opacity: 0; /* Mulai dengan elemen tidak terlihat */
+    transition: opacity 0.5s ease-in-out; /* Transisi untuk memudahkan tampilan */
+}
+
+#summary-container p span {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(20px);
+}
+
+.options-container button img {
+    width: 60px; /* Sesuaikan lebar gambar sesuai kebutuhan */
+    height: auto; /* Memastikan proporsi tetap terjaga */
+    margin-right: 10px; /* Jarak antara gambar dan teks */
+}
